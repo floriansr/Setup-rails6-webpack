@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   
-  root 'static_pages#home'
+  root 'images#index'
   get "/profile" => "static_pages#profile"
+  get "/profile/images" => "static_pages#images"
+  get "/profile/comments" => "static_pages#comments"
+
 end
