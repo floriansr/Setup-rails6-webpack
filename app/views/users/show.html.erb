@@ -1,0 +1,11 @@
+
+<p>This is the profile of user <%= @id%></p>
+
+<p>Real Name : <%= @display_name%></p>
+
+<p>username: <%= @user.username %></p>
+
+<% if @user == current_user %>
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+<% end %>
