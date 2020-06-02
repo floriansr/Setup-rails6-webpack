@@ -1,8 +1,7 @@
 class StaticPagesController < ApplicationController
+  before_action :private_route, only: [:profile] 
 
   include UsersHelper
-
-  before_action :private_route, only: [:profile] 
 
   def home
   end

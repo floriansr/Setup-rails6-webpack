@@ -1,5 +1,6 @@
 <% if @current_user_can_see_image %>
   <%= render partial: "one_image", locals: {image: @image}%>
+  <%= render partial: "comments/new" %>
 <% else %>
   <p>This image is private !</p>
 <% end %>

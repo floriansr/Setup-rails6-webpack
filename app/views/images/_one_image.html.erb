@@ -1,18 +1,28 @@
 <div class="single_image">
-  
   <% if !image.is_private || (image.is_private && current_user == image.author) %>
-    <%= image_tag "data:image/#{image.extension};base64,#{image.stream}"%>
-    
-    <p><strong>Description:</strong><%= image.description %></p>
-    <p><strong>Uploaded by:</strong><%= image.author.username %></p>
-
     <% if image.is_private%>
-      <p>ID : <%= image.id %> is private</p>
+      <p>Only you, can see this image</p>
     <% end %>
+    <%= image_tag "data:image/#{image.extension};base64,#{image.stream}"%>
+    <% if current_user %>
 
-    <% if current_user == image.author %>
-      <%= link_to "Change", edit_image_path(image) %>
-      <%= link_to "Delete", image_path(image), method: "delete"%>
+      <p><strong>Description:</strong><%= image.description %></p>
+      <p><strong>Uploaded by:</strong><%= image.author.username %></p>
+      <br/>
+
+      <%= link_to "See", image_path(image) %> 
+
+      <% if current_user == image.author %>
+        <%= link_to "Change", edit_image_path(image) %> 
+        <%= link_to "Delete", image_path(image), method: "delete"%> 
+      <% end %>
+
+      <div class="comments">
+        <% image.comments.each do |x|%>
+          <%= render partial: "comments/one_comment", locals: {image: image, comment: x}%>
+        <% end %>
+        
+      </div>
     <% end %>
   <% end %>
 </div>
