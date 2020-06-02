@@ -1,0 +1,15 @@
+<h1>Image</h1>
+
+<%= image_tag "data:image/#{@image.extension};base64,#{@image.stream}" %>
+
+
+<p><%= @image.description %></p>
+
+<p><strong>Uploaded by:</strong> <%= @user %></p>
+   
+
+<% if current_user && current_user == @image.author_id %>
+	  <%= link_to 'Back', images_path %>
+  <%= link_to "change", edit_image_path(image) %>
+  <%= link_to "delete", image_path(image), method: "delete"%>
+<% end %>

@@ -92,5 +92,5 @@ rails s
 ## Author
 
 -   **@julienemo** - _Initial work_ - (https://github.com/julienemo)
--   **Florian Sueur** - (https://github.com/floriansr)
+-   **@floriansr** - (https://github.com/floriansr)
 
