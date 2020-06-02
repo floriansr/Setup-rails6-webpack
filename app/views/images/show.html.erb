@@ -8,8 +8,8 @@
 <p><strong>Uploaded by:</strong> <%= @user %></p>
    
 
-<% if current_user && current_user == @image.author_id %>
+<% if current_user && current_user == @image.author %>
 	  <%= link_to 'Back', images_path %>
-  <%= link_to "change", edit_image_path(image) %>
-  <%= link_to "delete", image_path(image), method: "delete"%>
+  <%= link_to "change", edit_image_path(@image) %>
+  <%= link_to "delete", image_path(@image), method: "delete"%>
 <% end %>
