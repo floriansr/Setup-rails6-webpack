@@ -5,6 +5,8 @@
 <p>my username:  <%= @user.username%></p>
 <p>my email:  <%= @user.email%></p>
 
+// <%= link_to `<button type="button" class="btn btn-primary btn-lg">Large button</button>`, edit_user_path(@user)%>
+
 <%= link_to 'Edit', edit_user_path(@user) %>
 <%= link_to 'See all my images', profile_images_path %>  
 <%= link_to 'See all comments I wrote', profile_comments_path %> 

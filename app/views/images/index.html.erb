@@ -1,8 +1,9 @@
-<h3>All images</h3>
+<h3>Gallery</h3>
 
+<%= link_to '<button type="button" class="btn btn-primary btn-sm">New Image</button>'.html_safe, new_image_path %>
 
+<div class="row">
 <% @images.each do |image| %>
       <%= render partial: "one_image", locals: {image: image}%>
 <% end %>
-
-<%= link_to 'New Image', new_image_path %>
+</div>

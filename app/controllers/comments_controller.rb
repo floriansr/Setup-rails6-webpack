@@ -23,10 +23,6 @@ class CommentsController < ApplicationController
 
   def create
 
-    puts @image.id
-    puts @user.username
-
-
     @comment = Comment.new(comment_params.merge(image: @image).merge(user: @user))
 
     respond_to do |format|
@@ -73,10 +69,6 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      puts "3"*50
-      puts params
-      puts "4"*50
-      puts params.require(:comment).permit(:content)
       return params.require(:comment).permit(:content)
     end
 

@@ -1,28 +1,48 @@
-<div class="single_image">
-  <% if !image.is_private || (image.is_private && current_user == image.author) %>
-    <% if image.is_private%>
-      <p>Only you, can see this image</p>
-    <% end %>
-    <%= image_tag "data:image/#{image.extension};base64,#{image.stream}"%>
-    <% if current_user %>
+<div class="single_image col-lg-2">
+  <div class="card">
+    <!-- if public image or private image but also current_user = image.author THEN --> 
 
-      <p><strong>Description:</strong><%= image.description %></p>
-      <p><strong>Uploaded by:</strong><%= image.author.username %></p>
-      <br/>
+    <% if !image.is_private || (image.is_private && current_user == image.author) %>
+      <%= image_tag "data:image/#{image.extension};base64,#{image.stream}"%>
+      
+      <% if current_user %>
 
-      <%= link_to "See", image_path(image) %> 
+        <p><strong>Description:</strong><%= image.description %></p>
+        <p><strong>Uploaded by:</strong><%= image.author.username %></p>
+        <br/>
 
-      <% if current_user == image.author %>
-        <%= link_to "Change", edit_image_path(image) %> 
-        <%= link_to "Delete", image_path(image), method: "delete"%> 
+          <!-- Change or delete only if current_user = image.author --> 
+
+          <% if current_user == image.author %>
+          <div class="row justify-content-center">
+          <%= link_to '<button type="button" class="btn btn-success btn-sm">Change</button>'.html_safe, edit_image_path(image) %> 
+          <%= link_to '<button type="button" class="btn btn-danger btn-sm">Delete</button>'.html_safe, image_path(image), method: "delete" %>
+          </div>
+        <% end %>
+
+
+        <!-- lists comments --> 
+
+          <div class="card-body">
+            <% image.comments.each do |x|%>
+              <%= render partial: "comments/one_comment", locals: {image: image, comment: x}%>
+            <% end %>
+          </div>
+
+        <%= link_to '<button type="button" class="btn btn-primary btn-block">See</button>'.html_safe, image_path(image) %> 
       <% end %>
 
-      <div class="comments">
-        <% image.comments.each do |x|%>
-          <%= render partial: "comments/one_comment", locals: {image: image, comment: x}%>
-        <% end %>
-        
-      </div>
+      <!-- if private image, only current-user can see this --> 
+
+      <% if image.is_private%>
+          <p>Only you, can see this image</p>
+      <% end %>
     <% end %>
-  <% end %>
+
+    <!-- if private image, only current-user can see this (part2) --> 
+
+    <% if image.is_private && current_user != image.author %>
+      <h2>Sorry this content is private for you !</h2>
+    <% end %>
+  </div>
 </div>

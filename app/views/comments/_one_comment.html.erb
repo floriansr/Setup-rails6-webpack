@@ -8,7 +8,7 @@
   <p><%= comment.content%></p>
 
   <% if current_user == comment.user%>
-    <%= link_to 'Edit', edit_image_comment_path(image, comment) %> |
-    <%= link_to 'Delete', image_comment_path(image, comment), method: "delete" %> |
+    <%= link_to '<button type="button" class="btn btn-success btn-sm">Edit</button>'.html_safe, edit_image_comment_path(image, comment) %> 
+    <%= link_to '<button type="button" class="btn btn-danger btn-sm">Delete</button>'.html_safe, image_comment_path(image, comment), method: "delete" %> 
   <% end %>
 </div>
